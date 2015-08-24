@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+    <ui:define name="content">
+    	<h:body>
+    	<h:form>
+    	<h:commandButton action="#{adresDuzenleme.adresCek}" value="Güncel Liste"/>
+        <h:dataTable value="#{adresDuzenleme.liste}" var="c" border="2">
+    		
+    		<h:column>
+                <f:facet name="header">İsim</f:facet>
+                <h:inputText value="#{c.name}" rendered="#{c.editable}"/>
+                <h:outputText value="#{c.name}" rendered="#{not c.editable}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Adres</f:facet>
+                <h:inputText value="#{c.address}"  rendered="#{c.editable}"/>
+                <h:outputText value="#{c.address}"  rendered="#{not c.editable}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Şehir</f:facet>
+                <h:inputText value="#{c.city}" rendered="#{c.editable}"/>
+                <h:outputText value="#{c.city}"  rendered="#{not c.editable}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Telefon</f:facet>
+                <h:inputText value="#{c.tel}" rendered="#{c.editable}"/>
+                <h:outputText value="#{c.tel}"  rendered="#{not c.editable}"/>
+            </h:column>
+            <h:column>
+            <h:commandButton action="#{adresDuzenleme.adresSil}"  value="Sil">
+                        <f:param name="ID" value="#{c.id}"/>
+                    </h:commandButton>
+            </h:column>
+        </h:dataTable>
+        <h:commandButton value="Güncellemeleri Kaydet" action="#{adresDuzenleme.adresGuncelle}"/>
+        <h:commandButton value="İptal" action="listed"/>
+         </h:form>
+    	</h:body>
+    </ui:define>
+</ui:composition>
+</html>

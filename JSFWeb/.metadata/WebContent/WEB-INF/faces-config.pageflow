@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14393974015040" configfile="/JSFWeb/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="120" y="72" id="pf14393984006401" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14402042149620" inlinks="pf14402042149631" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="welcome.xhtml" x="372" y="72" id="pf14393984006413" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14394120587304" inlinks="pf14402042149642" path="/welcome.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="saved.xhtml" x="381" y="264" id="pf14394120587305" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf14400333670964" inlinks="pf14394120587304" path="/saved.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listed.xhtml" x="119" y="264" id="pf14400333670965" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf14401095977436 pf14402042149642 pf14402042149631" inlinks="pf14400333670964 pf14402042149620 pf14402042149643" path="/listed.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="edit.xhtml" x="12" y="156" id="pf14401095977437" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf14402042149643" inlinks="pf14401095977436" path="/edit.xhtml"/>
+  <links id="pf14394120587304" target="pf14394120587305" source="pf14393984006413" outcome="saved"/>
+  <links id="pf14400333670964" target="pf14400333670965" source="pf14394120587305" outcome="listed"/>
+  <links id="pf14401095977436" target="pf14401095977437" source="pf14400333670965" outcome="edit"/>
+  <links id="pf14402042149620" target="pf14400333670965" source="pf14393984006401" outcome="listed"/>
+  <links id="pf14402042149642" target="pf14393984006413" source="pf14400333670965" outcome="welcome"/>
+  <links id="pf14402042149631" target="pf14393984006401" source="pf14400333670965" outcome="login"/>
+  <links id="pf14402042149643" target="pf14400333670965" source="pf14401095977437" outcome="#{adresDuzenleme.adresGuncelle}"/>
+</pageflow:Pageflow>
