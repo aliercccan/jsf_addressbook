@@ -1,53 +1,44 @@
 package com.tutorial;
 
 import java.io.FileOutputStream;
-import java.io.*;
-import java.util.*;
 import java.sql.*; 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 
 
-public class PdfKaydetme {  
-        public static void main(String[] args) throws Exception{
-                
-                /* Create Connection objects */
-                Class.forName ("oracle.jdbc.OracleDriver"); 
-                Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/xe", "hr", "hr");
-                Statement stmt = conn.createStatement();
-                /* Define the SQL query */
-                ResultSet query_set = stmt.executeQuery("SELECT DEPARTMENT_ID,DEPARTMENT_NAME,MANAGER_ID,LOCATION_ID FROM DEPARTMENTS");
-                /* Step-2: Initialize PDF documents - logical objects */
-                Document my_pdf_report = new Document();
-                PdfWriter.getInstance(my_pdf_report, new FileOutputStream("pdf_report_from_sql_using_java.pdf"));
-                my_pdf_report.open();            
-                //we have four columns in our table
-                PdfPTable my_report_table = new PdfPTable(4);
-                //create a cell object
-                PdfPCell table_cell;
+public class PdfKaydetme{ 
+	public String PdfKaydet() throws Exception
+    {
+    	Class.forName("com.mysql.jdbc.Driver");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/adres","root","12345");
+        Statement statement = connection.createStatement();
+        ResultSet result = statement.executeQuery("SELECT Isim, Adres, Sehir, Telefon FROM adresler");
+        Document address_report = new Document();
+        PdfWriter.getInstance(address_report, new FileOutputStream("Adres_Listesi.pdf"));
+        address_report.open();            
+        PdfPTable adres_tablosu = new PdfPTable(4);
+        PdfPCell table_cell;
                
-                while (query_set.next()) {                
-                                String dept_id = query_set.getString("DEPARTMENT_ID");
-                                table_cell=new PdfPCell(new Phrase(dept_id));
-                                my_report_table.addCell(table_cell);
-                                String dept_name=query_set.getString("DEPARTMENT_NAME");
-                                table_cell=new PdfPCell(new Phrase(dept_name));
-                                my_report_table.addCell(table_cell);
-                                String manager_id=query_set.getString("MANAGER_ID");
-                                table_cell=new PdfPCell(new Phrase(manager_id));
-                                my_report_table.addCell(table_cell);
-                                String location_id=query_set.getString("LOCATION_ID");
-                                table_cell=new PdfPCell(new Phrase(location_id));
-                                my_report_table.addCell(table_cell);
-                                }
-                /* Attach report table to PDF */
-                my_pdf_report.add(my_report_table);                       
-                my_pdf_report.close();
-                
-                /* Close all DB related objects */
-                query_set.close();
-                stmt.close(); 
-                conn.close();               
-                
+        while (result.next()) {                
+        	String name = result.getString("Isim");
+            table_cell=new PdfPCell(new Phrase(name));
+            adres_tablosu.addCell(table_cell);
+            String address=result.getString("Adres");
+            table_cell=new PdfPCell(new Phrase(address));
+            adres_tablosu.addCell(table_cell);
+            String city=result.getString("Sehir");
+            table_cell=new PdfPCell(new Phrase(city));
+            adres_tablosu.addCell(table_cell);
+            String tel=result.getString("Telefon");
+            table_cell=new PdfPCell(new Phrase(tel));
+            adres_tablosu.addCell(table_cell);
         }
+        address_report.add(adres_tablosu);                       
+        address_report.close();
+                
+        result.close();
+        statement.close(); 
+        connection.close();  
+        return null;
+    }
 }
