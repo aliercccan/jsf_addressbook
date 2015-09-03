@@ -12,7 +12,6 @@ public class AdresEkleme {
 	String address="";
 	String city;
 	Integer tel;
-	String temp="elano";
     public String getName() {
         return name;
     }
@@ -45,7 +44,10 @@ public class AdresEkleme {
     {
         CallableStatement statement=null;
         Connection connection=null;
-        
+        if(city.equals("Sisli")
+        		||city.equals("Besiktas")||city.equals("Sariyer")||city.equals("Kagithane")
+        		||city.equals("Beyoglu")||city.equals("Fatih")||city.equals("Zeytinburnu")
+        		||city.equals("Manisa")||city.equals("Ankara")||city.equals("Izmir")){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/adres","root","12345");
@@ -72,7 +74,10 @@ public class AdresEkleme {
                 System.out.println(e);
             }
         }
-        return "saved";
+        	return "saved";
+        }
+        else
+        	return null;
     }
     
     public String listele(){
