@@ -10,9 +10,9 @@ public class AdresEkleme {
 	Integer id;
 	String name="";
 	String address="";
-	String city="";
-	String tel="";
-	
+	String city;
+	Integer tel;
+	String temp="elano";
     public String getName() {
         return name;
     }
@@ -28,16 +28,16 @@ public class AdresEkleme {
     }
  
     public String getCity() {
-        return city;
+   		return city;
     }
     public void setCity(String city) {
-        this.city = city;
+   		this.city = city;
     }
     
-    public String getTel() {
+    public Integer getTel() {
         return tel;
     }
-    public void setTel(String tel) {
+    public void setTel(Integer tel) {
         this.tel = tel;
     }
     
@@ -45,6 +45,7 @@ public class AdresEkleme {
     {
         CallableStatement statement=null;
         Connection connection=null;
+        
         try{
             Class.forName("com.mysql.jdbc.Driver");
             connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/adres","root","12345");
@@ -53,7 +54,7 @@ public class AdresEkleme {
             statement.setString(1, name);
             statement.setString(2, address);
             statement.setString(3, city);
-            statement.setString(4, tel); 
+            statement.setInt(4, tel);
             statement.execute();
         }
         catch(Exception e)
@@ -79,7 +80,7 @@ public class AdresEkleme {
     	name="";
     	address="";
     	city="";
-    	tel="";
+    	tel=null;
     	return "listed";
     }
 

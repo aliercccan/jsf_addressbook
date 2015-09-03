@@ -18,7 +18,7 @@ public class AdresDuzenleme implements Serializable {
 	String name="";
 	String address="";
 	String city="";
-	String tel="";
+	Integer tel;
 	boolean editable=true;
 	
 	public Integer getId() {
@@ -56,10 +56,10 @@ public class AdresDuzenleme implements Serializable {
         this.city = city;
     }
     
-    public String getTel() {
+    public Integer getTel() {
         return tel;
     }
-    public void setTel(String tel) {
+    public void setTel(Integer tel) {
         this.tel = tel;
     }
     
@@ -88,7 +88,7 @@ public class AdresDuzenleme implements Serializable {
             	veri.setName(result.getString("Isim"));
             	veri.setAddress(result.getString("Adres"));
             	veri.setCity(result.getString("Sehir"));
-            	veri.setTel(result.getString("Telefon"));
+            	veri.setTel(result.getInt("Telefon"));
             	veri.setEditable(true);
             	
             	liste.add(veri);
@@ -112,7 +112,7 @@ public class AdresDuzenleme implements Serializable {
         		state.setString(1, item.name);
             	state.setString(2, item.address);
             	state.setString(3, item.city);
-            	state.setString(4, item.tel);
+            	state.setInt(4, item.tel);
             	state.setInt(5, item.id);
                 state.executeUpdate();
         	}

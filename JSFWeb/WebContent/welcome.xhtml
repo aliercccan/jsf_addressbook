@@ -27,10 +27,14 @@
     		<td valign="top">Telefon numarasını giriniz...</td>
 				<table>
     				<tr>
-    	  				<td><h:inputText value="#{adresEkleme.city}" cols="24" rows="1" /></td>
+    	  				<td>
+    	  				<h:inputText value="#{adresEkleme.city}" cols="24" rows="1">
+    	  					<f:validateRegex pattern="^sisli$^besiktas$"/>
+    	  				</h:inputText>
+    	  				</td>
     	  				<td><h:inputText value="#{adresEkleme.tel}" cols="25" rows="1" /></td>
     				</tr>
-    			</table>	
+    			</table>
     		 <h:commandButton value="Kaydet" action="#{adresEkleme.saveAddress}"/>
     		 <h:commandButton value="İptal" action="listed"/>
     	</h:form>

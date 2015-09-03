@@ -12,7 +12,7 @@ public class AdresCekme {
 	String name="";
 	String address="";
 	String city="";
-	String tel="";    
+	Integer tel;    
 	
 	public Integer getId() {
         return id;
@@ -42,10 +42,10 @@ public class AdresCekme {
         this.city = city;
     }
     
-    public String getTel() {
+    public Integer getTel() {
         return tel;
     }
-    public void setTel(String tel) {
+    public void setTel(Integer tel) {
         this.tel = tel;
     }
     
@@ -69,7 +69,7 @@ public class AdresCekme {
             	veri.setName(result.getString("Isim"));
             	veri.setAddress(result.getString("Adres"));
             	veri.setCity(result.getString("Sehir"));
-            	veri.setTel(result.getString("Telefon"));
+            	veri.setTel(result.getInt("Telefon"));
             	
                 liste.add(veri);
             }
